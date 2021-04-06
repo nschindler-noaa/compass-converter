@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::exit()
 {
-
+    close();
 }
 
 void MainWindow::helpHelp()

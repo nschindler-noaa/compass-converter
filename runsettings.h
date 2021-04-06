@@ -3,6 +3,9 @@
 
 #include <QStringList>
 
+extern QString cmpssProjectsFile; // ("compass_projects.csv");
+extern QString inputProjectsFile; // ("input_projects.csv");
+
 enum Param {
     FLOW = 101,
     TEMP,
@@ -73,9 +76,15 @@ public:
     QString getVerboseHelp();
     void printHelp(bool h, bool v);
 
+    bool getOkay() const;
+    void setOkay(bool value);
+
 private:
+    bool okay;
     bool dailyValues;
     bool tempGenerate;
+    QString inputProjectsFile;
+    QString cmpssProjectsFile;
     QString currentDir;
     QString hydSimName;
     QString inputFile;

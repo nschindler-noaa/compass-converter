@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include <QCoreApplication>
+#include <QApplication>
 
-#include "mainconsole.h"
+#include "mainconsole_old.h"
 #include "files.h"
 
 #define numYears (82)    // 1929 = 0
 #define numPeriods (14)  // 10 Months plus AP1, AP2, SP1, SP2
 #define numDays (366)    // Includes Feb 29th and Dec 31st of previous year (JAN01 repeated)
 
-
-MainConsole::MainConsole(QObject *parent) : QObject(parent)
+MainConsole::MainConsole()
+ :  QObject()
 {
     interrupt = !settings.setSettings(qApp->arguments());
     // get command line arguments and set settings
@@ -23,9 +23,7 @@ MainConsole::MainConsole(QObject *parent) : QObject(parent)
         }
     }
     else {
-        if (!settings.getOkay()) {
-            std::cout << "Exiting due to problem with command arguments." << std::endl;
-        }
+        std::cout << "Exiting due to problem with command arguments." << std::endl;
     }
 }
 
@@ -88,19 +86,13 @@ void MainConsole::setupProjects()
 
 bool MainConsole::consoleMode (int argc, char *argv[])
 {
-    bool cmode = true;
-    char *arg;
+    bool cmode = false;
+    Q_UNUSED(argv);
 
     if (argc < 4)
-    {
-        cmode = false;
-        for (int i = 1; i < argc; i++) {
-            arg = argv[i];
-            if (arg[0] == '-')
-                cmode = true;
-        }
-    }
+        cmode = true;
 
     return cmode;
 }
+
 

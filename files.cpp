@@ -24,6 +24,7 @@ bool Files::readData(YearData *yrs)
         okay = false;
     }
     else {
+        // what kinda file is it?
 
     }
 

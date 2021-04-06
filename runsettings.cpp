@@ -5,6 +5,7 @@
 
 #include <iostream>
 
+
 RunSettings::RunSettings()
 {
     setDefaults();
@@ -18,17 +19,20 @@ RunSettings::RunSettings(QStringList args)
 
 void RunSettings::setDefaults()
 {
+    cmpssProjectsFile = QString("/pre-proc/compass_projects.csv");
+    inputProjectsFile = QString("/pre-proc/input_projects.csv");
+    okay = true;
     currentDir = QDir::current().path();
     setHydSimName(QString(""));
-    setInputDir(QString("1%/pre-proc").arg(currentDir));
+    setInputDir(QString(currentDir + QString("/pre-proc")));
     setInputFile(QString(""));
     setAlterName(QString(""));
     setScenario(QString(""));
-    setRuleFile(QString("1%/pre-proc/preProcData/Rules.pm").arg(currentDir));
+    setRuleFile(QString(currentDir + QString("/pre-proc/preProcData/Rules.pm")));
     setDailyValues(false);
-    setDamParams(QString("1%/pre-proc/damParams").arg(currentDir));
-    setDataDir(QString("%1/pre-proc").arg(currentDir));
-    setOutputDir(QString("1%/pre-proc").arg(currentDir));
+    setDamParams(QString(currentDir + QString("/pre-proc/damParams")));
+    setDataDir(QString(currentDir + QString("/pre-proc")));
+    setOutputDir(QString(currentDir + QString("/pre-proc")));
     setMod(NOSPILL);
     setDebug(ALL);
     setTrans(MAF);
@@ -43,7 +47,7 @@ QString RunSettings::getVersion()
 // Usage ====================================================================
 QString RunSettings::getHelp()
 {
-    QString use ("compass_pp -alt=ALT_NAME -hydro=HYDSIM_NAME -scenario=SCN_NAME \n");
+    QString use ("compass_pp -alt=ALT_NAME -hydro=HYDSIM_DIR -scenario=SCN_NAME \n");
     use.append ("    [ -rules=RULE_FILE_NAME ] [ -hydsim=HYDSIM_PRT [-d] ] [ -spill=DAY_SPILL ]\n");
     use.append ("    [ -dam=DAM_PARAMS ] [ -mod=ALL|NOSPILL ] [ -trans=MAF|FLOW|TEMP ]\n");
     use.append ("    [ -debug=TEMP|SPILL|ALL ] [ -data=DATA_DIR ] [ -out=OUTPUT_DIR ] [ -help ]\n");
@@ -59,7 +63,7 @@ QString RunSettings::getVerboseHelp ()
     verbose.append ("                 other operations. No spaces allowed in name.\n");
     verbose.append ("                   example: -alt=base2004-S1\n\n");
 
-    verbose.append ("    HYDSIM_NAME  If no HYDSIM_PRT file, then HYDSIM model files (.csv), must\n ");
+    verbose.append ("    HYDSIM_DIR   If no HYDSIM_PRT file, then HYDSIM model files (.csv), must\n ");
     verbose.append ("                 reside in the directory DATA_DIR/'HydSim'/HYDSIM_NAME. \n");
     verbose.append ("                 No spaces allowed in name.\n");
     verbose.append ("                   example: -hydsim=base2004\n\n");
@@ -143,9 +147,20 @@ void RunSettings::printHelp(bool h, bool v) {
     }
 }
 
+bool RunSettings::getOkay() const
+{
+    return okay;
+}
+
+void RunSettings::setOkay(bool value)
+{
+    okay = value;
+}
+
 bool RunSettings::setSettings(QStringList args)
 {
-    bool okay = true;
+    okay = true;
+    bool interrupt = false;
     bool version = false;
     bool help = false;
     QString arg;
@@ -154,13 +169,7 @@ bool RunSettings::setSettings(QStringList args)
     {
         arg = QString(args.at(i));
         part = arg.split('=');
-        if (part.at(0).contains("-h", Qt::CaseInsensitive)) {
-            help = true;
-        }
-        else if (part.at(0).contains("-v", Qt::CaseInsensitive)) {
-            version = true;
-        }
-        else if (part.at(0).startsWith("-alt", Qt::CaseInsensitive)) {
+        if  (part.at(0).startsWith("-alt", Qt::CaseInsensitive)) {
             setAlterName(part.at(1));
         }
         else if (part.at(0).startsWith("-hydro", Qt::CaseInsensitive)) {
@@ -188,7 +197,7 @@ bool RunSettings::setSettings(QStringList args)
         else if (part.at(0).startsWith("-data", Qt::CaseInsensitive)) {
             setDataDir(part.at(1));
         }
-        else if (part.at(0).startsWith("-output", Qt::CaseInsensitive)) {
+        else if (part.at(0).startsWith("-out", Qt::CaseInsensitive)) {
             setOutputDir(part.at(1));
         }
         else if (part.at(0).startsWith("-trans", Qt::CaseInsensitive)) {
@@ -213,13 +222,19 @@ bool RunSettings::setSettings(QStringList args)
             else if (part.at(1).contains("ALL", Qt::CaseInsensitive) == 0)
                 setTrans(ALL);
         }
+        else if (part.at(0).contains("-h", Qt::CaseInsensitive)) {
+            help = true;
+        }
+        else if (part.at(0).contains("-v", Qt::CaseInsensitive)) {
+            version = true;
+        }
     }
     if (help || version) {
-        okay = false;
+        interrupt = true;
         printHelp(help, version);
     }
 
-    return okay;
+    return !interrupt;
 }
 
 bool RunSettings::getDailyValues() const

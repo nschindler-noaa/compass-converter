@@ -23,6 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG += console
 
 SOURCES += \
         main.cpp \
@@ -33,7 +34,8 @@ SOURCES += \
     runsettings.cpp \
     files.cpp \
     rule.cpp \
-    log.cpp
+    log.cpp \
+    mainconsole.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +45,8 @@ HEADERS += \
     runsettings.h \
     files.h \
     rule.h \
-    log.h
+    log.h \
+    mainconsole.h
 
 FORMS += \
         mainwindow.ui

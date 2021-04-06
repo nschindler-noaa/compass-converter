@@ -2,13 +2,16 @@
 #include "mainconsole.h"
 
 #include <iostream>
-#include <QApplication>
 #include <QCoreApplication>
+#include <QApplication>
+#include <qlogging.h>
+#include "log.h"
 
 int main(int argc, char *argv[])
 {
     int retval = 0;
     if (MainConsole::consoleMode(argc, argv)) {
+        qInstallMessageHandler(conMessageHandler);
         QCoreApplication a(argc, argv);
         MainConsole c;
         if (c.getInterrupt()) {
@@ -21,9 +24,9 @@ int main(int argc, char *argv[])
             retval = a.exec();
         }
         if (retval == 0)
-            std::cout << "Execution successful." << std::endl;
+            qInfo("Execution successful.");
         else
-            std::cout << "Execution stopped." << std::endl;
+            qInfo("Execution stopped.");
     }
     else {
         QApplication a(argc, argv);
