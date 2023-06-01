@@ -3,6 +3,7 @@
 
 #include <QFile>
 
+#include "project.h"
 #include "meanvalues.h"
 #include "periodvalues.h"
 
@@ -16,14 +17,18 @@ public:
     void setYear(int value);
 
     void clearData();
-    void setupProjects();
+    void setupProjects(int days = 366);
     void setupMeans();
     void setupPeriods();
 
+    project *findProject(int code);
+    project *findProject(QString name);
+
 private:
     int year;
+    QList<project *> *projects;   // dams and pools
     QList<periodValues *> *rawData;  // monthly-period values
-    QList<periodValues *> *projects; // daily values
+//    QList<periodValues *> *projects; // daily values
     QList<meanValues *>   *meanData; // historic mean values
 };
 

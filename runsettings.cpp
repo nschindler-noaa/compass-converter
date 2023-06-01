@@ -22,19 +22,20 @@ void RunSettings::setDefaults()
     cmpssProjectsFile = QString("/pre-proc/compass_projects.csv");
     inputProjectsFile = QString("/pre-proc/input_projects.csv");
     okay = true;
+    interrupt = false;
     currentDir = QDir::current().path();
-    setHydSimName(QString(""));
-    setInputDir(QString(currentDir + QString("/pre-proc")));
-    setInputFile(QString(""));
     setAlterName(QString(""));
+    setInputDir(QString(currentDir + QString("/pre-proc")));
     setScenario(QString(""));
+    setInputFile(QString(""));
     setRuleFile(QString(currentDir + QString("/pre-proc/preProcData/Rules.pm")));
+    setHydSimName(QString(""));
     setDailyValues(false);
     setDamParams(QString(currentDir + QString("/pre-proc/damParams")));
     setDataDir(QString(currentDir + QString("/pre-proc")));
     setOutputDir(QString(currentDir + QString("/pre-proc")));
     setMod(NOSPILL);
-    setDebug(ALL);
+    setDebug(NONE);
     setTrans(MAF);
 }
 
@@ -50,7 +51,8 @@ QString RunSettings::getHelp()
     QString use ("compass_pp -alt=ALT_NAME -hydro=HYDSIM_DIR -scenario=SCN_NAME \n");
     use.append ("    [ -rules=RULE_FILE_NAME ] [ -hydsim=HYDSIM_PRT [-d] ] [ -spill=DAY_SPILL ]\n");
     use.append ("    [ -dam=DAM_PARAMS ] [ -mod=ALL|NOSPILL ] [ -trans=MAF|FLOW|TEMP ]\n");
-    use.append ("    [ -debug=TEMP|SPILL|ALL ] [ -data=DATA_DIR ] [ -out=OUTPUT_DIR ] [ -help ]\n");
+    use.append ("    [ -debug=TEMP|SPILL|ALL ] [ -data=DATA_DIR ] [ -out=OUTPUT_DIR ]\n");
+    use.append ("    [ -help[v] ] [ -v ]\n");
     return use;
 }
 
@@ -130,21 +132,20 @@ QString RunSettings::getVerboseHelp ()
     verbose.append ("                 forward slash as separator ('/').\n");
     verbose.append ("                    example: -output=C:/out/Final/MOD/debug1\n\n");
 
-    verbose.append ("    help         Prints this information (-help).\n\n");
+    verbose.append ("    help         Prints this information (-help or -h).\n\n");
+
+    verbose.append ("	 v            By itself, prints only the version. When added to\n");
+    verbose.append ("	              -help, prints all help info (-helpv or -v).\n\n");
 
     return verbose;
 }
 
 void RunSettings::printHelp(bool h, bool v) {
     Log::logMessage(NORML, getVersion());
-//    std::cout << getVersion().toUtf8().data();
-    if (h) {
+    if (h)
         Log::logMessage(NORML, getHelp());
-//        std::cout << getHelp().toUtf8().data();
-        if (v)
-            Log::logMessage(NORML, getVerboseHelp());
-//            std::cout << getVerboseHelp().toUtf8().data();
-    }
+    if (v)
+        Log::logMessage(NORML, getVerboseHelp());
 }
 
 bool RunSettings::getOkay() const
@@ -157,11 +158,22 @@ void RunSettings::setOkay(bool value)
     okay = value;
 }
 
+bool RunSettings::getInterrupt() const
+{
+    return interrupt;
+}
+
+void RunSettings::setInterrupt(bool newInterrupt)
+{
+    interrupt = newInterrupt;
+}
+
 bool RunSettings::setSettings(QStringList args)
 {
     okay = true;
-    bool interrupt = false;
+    interrupt = false;
     bool version = false;
+    bool verbose = false;
     bool help = false;
     QString arg;
     QStringList part;
@@ -207,33 +219,55 @@ bool RunSettings::setSettings(QStringList args)
                 setTrans(FLOW);
             else if (part.at(1).contains("TEMP", Qt::CaseInsensitive) == 0)
                 setTrans(TEMP);
+            else
+                qWarning("TEMP, FLOW, or MAF are the only recognized options for trans, using default MAF.");
         }
         else if (part.at(0).startsWith("-mod", Qt::CaseInsensitive)) {
             if (part.at(1).contains("ALL", Qt::CaseInsensitive) == 0)
-                setTrans(ALL);
+                setMod(ALL);
             else if (part.at(1).contains("NOSPILL", Qt::CaseInsensitive) == 0)
-                setTrans(NOSPILL);
+                setMod(NOSPILL);
+            else
+                qWarning("NOSPILL or ALL are the only recognized options for mod, using default NOSPILL.");
         }
         else if (part.at(0).startsWith("-debug", Qt::CaseInsensitive)) {
             if (part.at(1).contains("TEMP", Qt::CaseInsensitive) == 0)
-                setTrans(TEMP);
+                setDebug(TEMP);
             else if (part.at(1).contains("SPILL", Qt::CaseInsensitive) == 0)
-                setTrans(SPILL);
+                setDebug(SPILL);
             else if (part.at(1).contains("ALL", Qt::CaseInsensitive) == 0)
-                setTrans(ALL);
+                setDebug(ALL);
+            else
+                qWarning("TEMP, SPILL, or ALL are the only recognized options for debug, using NONE.");
         }
         else if (part.at(0).contains("-h", Qt::CaseInsensitive)) {
             help = true;
+            if (part.at(0).contains("v", Qt::CaseInsensitive))
+                verbose = true;
         }
         else if (part.at(0).contains("-v", Qt::CaseInsensitive)) {
-            version = true;
+            if (help)
+                verbose = true;
+            else
+                version = true;
         }
     }
     if (help || version) {
+        okay = true;
         interrupt = true;
-        printHelp(help, version);
+        printHelp(help, verbose);
     }
-
+    else
+    {
+        if (getAlterName().isEmpty())
+            qCritical("No alternative name provided.");
+        if (getHydSimName().isEmpty())
+            qCritical("No HydSim file name provided.");
+        if (getScenario().isEmpty())
+            qCritical("No scenario file name provided.");
+        if (getDebug() == NONE)
+            qWarning("No debug output will be generated.");
+    }
     return !interrupt;
 }
 

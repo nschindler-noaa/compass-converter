@@ -30,6 +30,7 @@ SOURCES += \
         mainwindow.cpp \
     meanvalues.cpp \
     periodvalues.cpp \
+    project.cpp \
     yeardata.cpp \
     runsettings.cpp \
     files.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
         mainwindow.h \
     meanvalues.h \
     periodvalues.h \
+    project.h \
     yeardata.h \
     runsettings.h \
     files.h \

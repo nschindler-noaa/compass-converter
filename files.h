@@ -1,7 +1,8 @@
 #ifndef FILES_H
 #define FILES_H
 
-
+#include <QDir>
+#include <QFile>
 
 #include "runsettings.h"
 #include "yeardata.h"
@@ -65,9 +66,12 @@ public:
 
 private:
     QString app;        //
+    QDir appDir;
     QString data;
+    QDir inputDir;
     QString user;       //
     QString bin;        //
+    QDir binDir;
     QString mean;       //
     QString sub;        //
     QString final;      //

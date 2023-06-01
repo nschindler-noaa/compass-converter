@@ -29,6 +29,26 @@ public slots:
     QString *chooseFile(QString name, QString filter);
     QString *chooseDir(QString name);
 
+    void changeInputFile();
+    void changeInputDir();
+    void changeRuleName();
+    void changeScenarioName();
+    void changeDailyValues(bool checked);
+    void changeRuleFileName();
+    void changeDataFileName();
+    void changeDataDir();
+    void changeDataInput();
+
+    void changeOutputDir();
+    void changeFishTransport(int value);
+    void changeDebugOutput(int value);
+
+    void changeCompassExe();
+    void changeTempExe();
+
+    void startRun();
+    void cancelRun();
+
     void runConvert();
 
     void setDebug(QString value);

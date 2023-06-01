@@ -32,5 +32,6 @@ private:
 };
 
 void conMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+void guiMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 #endif // LOG_H

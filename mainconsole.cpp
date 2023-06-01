@@ -4,6 +4,7 @@
 
 #include "mainconsole.h"
 #include "files.h"
+#include "project.h"
 
 #define numYears (82)    // 1929 = 0
 #define numPeriods (14)  // 10 Months plus AP1, AP2, SP1, SP2
@@ -12,23 +13,42 @@
 
 MainConsole::MainConsole(QObject *parent) : QObject(parent)
 {
-    interrupt = !settings.setSettings(qApp->arguments());
     // get command line arguments and set settings
+    interrupt = !settings.setSettings(qApp->arguments());
     if (!interrupt) {
-        if (files.setupDirs(&settings)) {
-            setupProjects();
-        }
-        else {
-            std::cout << "Exiting due to file problem." << std::endl;
-        }
+        setup(settings);
     }
     else {
         if (!settings.getOkay()) {
-            std::cout << "Exiting due to problem with command arguments." << std::endl;
+            qCritical("Execution interrupted.");
+            std::cout << "Execution interrupted." << std::endl;
         }
     }
 }
 
+int MainConsole::setup(RunSettings &sets)
+{
+    int retval = 0;
+    if (files.setupDirs(&sets)) {
+        setupProjects();
+    }
+    else {
+        qCritical("Exiting due to a file problem.");
+        std::cout << "Exiting due to a file problem." << std::endl;
+        retval = -1;
+    }
+    return retval;
+}
+
+int MainConsole::run(RunSettings &sets)
+{
+    int retval = setup(sets);
+    if (retval == 0)
+        retval = run();
+    else
+        retval = -1;
+    return retval;
+}
 
 int MainConsole::run() {
     int retval = 0;
@@ -67,6 +87,7 @@ int MainConsole::run() {
 
     // create COMPASS .scn file (incorporating all above)
 //    run.compass(&files, &years);
+
     emit done(!interrupt);
     return retval;
 }
@@ -82,6 +103,11 @@ void MainConsole::setInterrupt(bool value)
 }
 
 void MainConsole::setupProjects()
+{
+
+}
+
+void MainConsole::setupCmpProjects()
 {
 
 }

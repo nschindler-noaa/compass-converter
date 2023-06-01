@@ -79,8 +79,12 @@ public:
     bool getOkay() const;
     void setOkay(bool value);
 
+    bool getInterrupt() const;
+    void setInterrupt(bool newInterrupt);
+
 private:
     bool okay;
+    bool interrupt;
     bool dailyValues;
     bool tempGenerate;
     QString inputProjectsFile;

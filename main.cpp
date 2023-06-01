@@ -2,6 +2,7 @@
 #include "mainconsole.h"
 
 #include <iostream>
+#include <QObject>
 #include <QCoreApplication>
 #include <QApplication>
 #include <qlogging.h>
@@ -22,14 +23,15 @@ int main(int argc, char *argv[])
                              &a, SLOT(quit()), Qt::QueuedConnection);
             c.run();
             retval = a.exec();
+            if (retval == 0)
+                qInfo("Execution successful.");
+            else
+                qInfo("Execution stopped.");
         }
-        if (retval == 0)
-            qInfo("Execution successful.");
-        else
-            qInfo("Execution stopped.");
-    }
+            }
     else {
         QApplication a(argc, argv);
+        qInstallMessageHandler(guiMessageHandler);
         MainWindow w;
         w.show();
         retval = a.exec();

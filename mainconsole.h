@@ -2,6 +2,7 @@
 #define MAINCONSOLE_H
 
 #include <QObject>
+#include <QMultiMap>
 
 #include "runsettings.h"
 #include "yeardata.h"
@@ -14,9 +15,11 @@ public:
     explicit MainConsole(QObject *parent = nullptr);
 
 public slots:
+    int setup(RunSettings &sets);
     void setupProjects();
+    void setupCmpProjects();
+    int run(RunSettings &sets);
     int run();
-
 
     bool getInterrupt() const;
     void setInterrupt(bool value);
@@ -31,6 +34,7 @@ private:
     RunSettings settings;
     YearData years;
     Files files;
+    QList<Project *> projects;
 
 };
 

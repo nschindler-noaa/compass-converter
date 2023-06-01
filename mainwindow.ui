@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
-    <height>587</height>
+    <width>747</width>
+    <height>578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,8 +35,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>745</width>
-             <height>456</height>
+             <width>703</width>
+             <height>445</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -46,30 +46,7 @@
                <string>Requred</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
-               <item row="0" column="2">
-                <widget class="QPushButton" name="pushButtonInputDirectory">
-                 <property name="maximumSize">
-                  <size>
-                   <width>120</width>
-                   <height>30</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>Change</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="labelRuleName">
-                 <property name="frameShape">
-                  <enum>QFrame::Box</enum>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2">
+               <item row="3" column="2">
                 <widget class="QPushButton" name="pushButtonScenario">
                  <property name="maximumSize">
                   <size>
@@ -83,13 +60,60 @@
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="labelScen">
+                <widget class="QLabel" name="labelRule">
+                 <property name="text">
+                  <string>Rule Name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="pushButtonInputDirectory">
+                 <property name="maximumSize">
+                  <size>
+                   <width>120</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Change</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelScenario">
                  <property name="text">
                   <string>Scenario Name</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="2">
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelInputDir">
+                 <property name="text">
+                  <string>Directory Name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="labelRuleName">
+                 <property name="frameShape">
+                  <enum>QFrame::Box</enum>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="labelScenarioName">
+                 <property name="frameShape">
+                  <enum>QFrame::Box</enum>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
                 <widget class="QPushButton" name="pushButtonRuleName">
                  <property name="maximumSize">
                   <size>
@@ -102,15 +126,25 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="labelInputDir">
+               <item row="1" column="1">
+                <widget class="QLabel" name="labelInputDirName">
+                 <property name="frameShape">
+                  <enum>QFrame::Box</enum>
+                 </property>
                  <property name="text">
-                  <string>Directory Name</string>
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QPushButton" name="pushButtonInputFile">
+                 <property name="text">
+                  <string>Change</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QLabel" name="labelInputDirectory">
+                <widget class="QLabel" name="labelInputFileName">
                  <property name="frameShape">
                   <enum>QFrame::Box</enum>
                  </property>
@@ -119,20 +153,10 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="labelRule">
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelInputFile">
                  <property name="text">
-                  <string>Rule Name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="labelScenario">
-                 <property name="frameShape">
-                  <enum>QFrame::Box</enum>
-                 </property>
-                 <property name="text">
-                  <string/>
+                  <string>File Name (.PRT file)</string>
                  </property>
                 </widget>
                </item>
@@ -142,7 +166,7 @@
             <item>
              <widget class="QCheckBox" name="checkBoxDailyValues">
               <property name="text">
-               <string>Daily Values</string>
+               <string>Daily Values provided in files</string>
               </property>
              </widget>
             </item>
@@ -167,7 +191,7 @@
                 </widget>
                </item>
                <item row="0" column="2">
-                <widget class="QPushButton" name="pushButtonRuleFilename">
+                <widget class="QPushButton" name="pushButtonRuleFileName">
                  <property name="maximumSize">
                   <size>
                    <width>120</width>
@@ -180,7 +204,7 @@
                 </widget>
                </item>
                <item row="2" column="1" rowspan="2">
-                <widget class="QLabel" name="labelDataDIrname">
+                <widget class="QLabel" name="labelDataDirName">
                  <property name="frameShape">
                   <enum>QFrame::Box</enum>
                  </property>
@@ -190,7 +214,7 @@
                 </widget>
                </item>
                <item row="1" column="2">
-                <widget class="QPushButton" name="pushButtonDataFilename">
+                <widget class="QPushButton" name="pushButtonDataFileName">
                  <property name="maximumSize">
                   <size>
                    <width>120</width>
@@ -203,7 +227,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QLabel" name="labelRuleFilename">
+                <widget class="QLabel" name="labelRuleFileName">
                  <property name="frameShape">
                   <enum>QFrame::Box</enum>
                  </property>
@@ -213,7 +237,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="labelDataFname">
+                <widget class="QLabel" name="labelDataFile">
                  <property name="text">
                   <string>Data File Name</string>
                  </property>
@@ -227,7 +251,7 @@
                 </widget>
                </item>
                <item row="2" column="2">
-                <widget class="QPushButton" name="pushButtonDataDirname">
+                <widget class="QPushButton" name="pushButtonDataDirName">
                  <property name="maximumSize">
                   <size>
                    <width>120</width>
@@ -247,14 +271,14 @@
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QLabel" name="labelRuleFname">
+                <widget class="QLabel" name="labelRuleFile">
                  <property name="text">
                   <string>Rule File Name</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QLabel" name="labelDataFIlename">
+                <widget class="QLabel" name="labelDataFIleName">
                  <property name="frameShape">
                   <enum>QFrame::Box</enum>
                  </property>
@@ -267,7 +291,7 @@
              </widget>
             </item>
             <item>
-             <spacer name="verticalSpacer">
+             <spacer name="verticalSpacerInput">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -304,107 +328,6 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0" colspan="3">
-         <widget class="QFrame" name="frameRun">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>1</horstretch>
-            <verstretch>1</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>240</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>480</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Panel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="lineWidth">
-           <number>3</number>
-          </property>
-          <property name="midLineWidth">
-           <number>3</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelTransport">
-          <property name="text">
-           <string>Generate fish Transport based on</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="labelOutputDirectory">
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
-          </property>
-          <property name="text">
-           <string>/pre-proc</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="pushButtonOutputDirectory">
-          <property name="maximumSize">
-           <size>
-            <width>120</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Change</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0" colspan="3">
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButtonRun">
-            <property name="text">
-             <string>Run</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="comboBoxTransport">
           <item>
@@ -434,6 +357,39 @@
           </item>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelTransport">
+          <property name="text">
+           <string>Generate fish Transport based on</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pushButtonOutputDirectory">
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Change</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <spacer name="verticalSpacerOutput">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="2" column="1">
          <widget class="QComboBox" name="comboBoxDebug">
           <item>
@@ -458,12 +414,162 @@
           </item>
          </widget>
         </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelOutputDirName">
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>/pre-proc</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabOutputFiles">
+      <widget class="QWidget" name="tabRun">
        <attribute name="title">
-        <string>Output Files</string>
+        <string>Run</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="3" column="0" colspan="3">
+         <layout class="QHBoxLayout" name="horizontalLayoutRun">
+          <item>
+           <spacer name="horizontalSpacerRun1">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonRun">
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonCancelRun">
+            <property name="text">
+             <string>Cancel Run</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacerRun2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="pushButtonChangeTemp">
+          <property name="text">
+           <string>Change</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QFrame" name="frameConOut">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QPlainTextEdit" name="plainTextEditOut">
+             <property name="frameShape">
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="lineWrapMode">
+              <enum>QPlainTextEdit::NoWrap</enum>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelCompassb">
+          <property name="text">
+           <string>COMPASS executable </string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButtonChangeCompassb">
+          <property name="text">
+           <string>Change</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelTemp">
+          <property name="text">
+           <string>Temperature model</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="labelTempExe">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>temp_paulsen_r.exe</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="labelCompassbExe">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>compassb.exe</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -474,7 +580,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>789</width>
+     <width>747</width>
      <height>26</height>
     </rect>
    </property>
@@ -492,7 +598,15 @@
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actioncompassb"/>
+    <addaction name="actionAlternateTempModel"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menuTools"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -505,6 +619,9 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionHelp">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Help</string>
    </property>
@@ -519,8 +636,39 @@
     <string>E&amp;xit</string>
    </property>
   </action>
+  <action name="actioncompassb">
+   <property name="text">
+    <string>compassb</string>
+   </property>
+  </action>
+  <action name="actionAlternateTempModel">
+   <property name="text">
+    <string>Alternate temp model</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>pushButtonInputFile</tabstop>
+  <tabstop>pushButtonInputDirectory</tabstop>
+  <tabstop>pushButtonRuleName</tabstop>
+  <tabstop>pushButtonScenario</tabstop>
+  <tabstop>checkBoxDailyValues</tabstop>
+  <tabstop>pushButtonRuleFileName</tabstop>
+  <tabstop>pushButtonDataFileName</tabstop>
+  <tabstop>pushButtonDataDirName</tabstop>
+  <tabstop>comboBoxInputs</tabstop>
+  <tabstop>pushButtonOutputDirectory</tabstop>
+  <tabstop>comboBoxTransport</tabstop>
+  <tabstop>comboBoxDebug</tabstop>
+  <tabstop>pushButtonChangeCompassb</tabstop>
+  <tabstop>pushButtonChangeTemp</tabstop>
+  <tabstop>pushButtonRun</tabstop>
+  <tabstop>pushButtonCancelRun</tabstop>
+  <tabstop>plainTextEditOut</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

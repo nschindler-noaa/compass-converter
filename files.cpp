@@ -11,7 +11,14 @@ bool Files::setupDirs(RunSettings *set)
     if (set == nullptr) {
         okay = false;
     } else {
-        // do the stuff
+        // input directory
+        if (!set->getInputDir().isEmpty())
+            inputDir = QDir(set->getInputDir());
+        else
+            okay = false;
+        // output directory
+
+        // other (intermediate directories)
     }
 
     return okay;

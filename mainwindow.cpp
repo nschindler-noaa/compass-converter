@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QFileDialog>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -8,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     settings = new RunSettings();
+
+    connect (ui->pushButtonInputFile, SIGNAL(clicked()), this, SLOT(changeInputFile()));
+    connect (ui->pushButtonInputDirectory, SIGNAL(clicked()), SLOT(changeInputDir()));
 
     connect (ui->actionExit, SIGNAL(triggered()), SLOT(exit()));
     connect (ui->actionHelp, SIGNAL(triggered()), SLOT(helpHelp()));
@@ -38,7 +43,7 @@ void MainWindow::helpAbout()
 
 QString *MainWindow::chooseFile(QString name, QString filter)
 {
-    QString *file = new QString("");
+    QString *file = new QString();
 
 
     return file;
@@ -46,10 +51,99 @@ QString *MainWindow::chooseFile(QString name, QString filter)
 
 QString *MainWindow::chooseDir(QString name)
 {
-    QString *dir = new QString("");
+    QString *dir = new QString();
 
     return dir;
 }
+
+void MainWindow::changeInputFile()
+{
+
+}
+
+void MainWindow::changeInputDir()
+{
+
+}
+
+void MainWindow::changeRuleName()
+{
+
+}
+
+void MainWindow::changeScenarioName()
+{
+
+}
+
+void MainWindow::changeDailyValues(bool checked)
+{
+    if (checked)
+    {
+    }
+}
+
+void MainWindow::changeRuleFileName()
+{
+
+}
+
+void MainWindow::changeDataFileName()
+{
+
+}
+
+void MainWindow::changeDataDir()
+{
+
+}
+
+void MainWindow::changeDataInput()
+{
+
+}
+
+void MainWindow::changeOutputDir()
+{
+
+}
+
+void MainWindow::changeFishTransport(int value)
+{
+    switch (value)
+    {
+    }
+}
+
+void MainWindow::changeDebugOutput(int value)
+{
+    switch (value)
+    {
+
+    }
+}
+
+void MainWindow::changeCompassExe()
+{
+
+}
+
+void MainWindow::changeTempExe()
+{
+
+}
+
+void MainWindow::startRun()
+{
+
+}
+
+void MainWindow::cancelRun()
+{
+
+}
+
+
 
 void MainWindow::runConvert()
 {
